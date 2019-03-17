@@ -1,15 +1,11 @@
 import math
+from helpers import ejercicio
 
-# @HELPER: Log numero de ejercicio
-def ejercicio(titulo, resultado):
-    print('\nEjercicio:', titulo, resultado)
-
-# @EJERCICIOS:
-
-# Implementar algoritmos que permitan:
+# Ejercicio 1.2
 # a) Calcular el perímetro de un rectángulo dada su base y su altura.
 def perimetroRectangulo(base, altura):
-    return base * 2 + altura * 2
+    lados = 2
+    return base * lados + altura * lados
 
 ejercicio('1.2) a) Perimetro Rectangulo:', perimetroRectangulo(2, 4))
 
@@ -47,3 +43,7 @@ ejercicio('1.2) f) Volumen Esfera:', volumenEsfera(3))
 
 
 # g) Dados los catetos de un triángulo rectángulo, calcular su hipotenusa.
+def calcularHipotenusa(cateto1, cateto2):
+    return "{:.2f}".format(math.sqrt(cateto1 ** 2 + cateto2 ** 2))
+
+ejercicio('1.2) g) Hipotenusa:', calcularHipotenusa(2, 2))
