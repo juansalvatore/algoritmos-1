@@ -1,6 +1,6 @@
 import math
 from helpers import ejercicio
-
+from helpers import roundDecimal
 # Ejercicio 1.2
 # a) Calcular el perímetro de un rectángulo dada su base y su altura.
 def perimetroRectangulo(base, altura):
@@ -25,25 +25,25 @@ ejercicio('1.2) C) Area Coordenadas:', areaCoordenadas(2, 5, 2, 4))
 
 # d) Calcular el perímetro de un círculo dado su radio.
 def perimetroCirculo(r):
-    return "{:.2f}".format(math.pi * (r*2))
+    return roundDecimal(math.pi * (r*2))
 
 ejercicio('1.2) d) Perimetro Circulo:', perimetroCirculo(3))
 
 # e) Calcular el área de un círculo dado su radio.
 def areaCirculo(r):
-    return "{:.2f}".format(math.pi * (r**2))
+    return roundDecimal(math.pi * (r**2))
 
 ejercicio('1.2) e) Area Circulo:', areaCirculo(3))
 
 # f) Calcular el volumen de una esfera dado su radio.
 def volumenEsfera(r):
-    return "{:.2f}".format((4 * math.pi* r**3)/3)
+    return roundDecimal((4 * math.pi* r**3)/3)
     
 ejercicio('1.2) f) Volumen Esfera:', volumenEsfera(3))
 
 
 # g) Dados los catetos de un triángulo rectángulo, calcular su hipotenusa.
 def calcularHipotenusa(cateto1, cateto2):
-    return "{:.2f}".format(math.sqrt(cateto1 ** 2 + cateto2 ** 2))
+    return roundDecimal(math.sqrt(cateto1 ** 2 + cateto2 ** 2))
 
 ejercicio('1.2) g) Hipotenusa:', calcularHipotenusa(2, 2))
