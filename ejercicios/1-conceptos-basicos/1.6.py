@@ -5,6 +5,7 @@
 
 def magicTrick():
     palabra = input('Por favor, escriba una palabra: ')
+    
     for _ in range(100):
         print(palabra, end=' ')
 
