@@ -7,10 +7,10 @@
 
 from helpers import get_int
 
-def calcularMonto():
+def calcular_monto():
     pesos = get_int('Pesos: ')
     interes =  get_int('Tasa de interes: ')
     años = get_int('Años: ')
     return pesos * (1 + interes / 100) * años
     
-print('2.1) Ejercicio:', calcularMonto())
+print('2.1) Ejercicio:', calcular_monto())

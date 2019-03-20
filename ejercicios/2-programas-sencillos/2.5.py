@@ -11,16 +11,16 @@
 # Nota: hacerlo usando y sin usar la ecuación ∑𝑛𝑖=1 𝑖 = 𝑛 (𝑛 + 1)/2. ¿Cuál realiza más operaciones?
 from helpers import get_int
 
-def numerosTriangulares():
+def numeros_triangulares():
     n = get_int('Numero? ')
     count = 1
     for i in range(1, n + 1):
         print(i, '-', count)
         count = count + (i + 1)
         
-numerosTriangulares()
+numeros_triangulares()
 
-def numerosTriangularesEcuation(n):
+def numeros_triangulares_ecuation(n):
     return n * ((n + 1) / 2)
 
-print('Ecuación: ', numerosTriangularesEcuation(100000))
+print('Ecuación: ', numeros_triangulares_ecuation(100000))

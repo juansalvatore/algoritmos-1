@@ -11,9 +11,9 @@ loop(5)
 
 # b) >>> for i in range(2, 6):
 # ... print(i, 2 ** i)
-def loopRange(start, end):
+def loop_range(start, end):
     for i in range(start, end + 1):
         print(i, 2 ** i)
 
 print('\n1.3) b)')
-loopRange(3, 10)
+loop_range(3, 10)

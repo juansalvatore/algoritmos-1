@@ -7,10 +7,10 @@ from helpers import get_int
 def a_segundos(h, m , s):
     return h * 3600 + m * 60 + s
 
-def calcSegundos():
+def calc_segundos():
     h = get_int('Horas: ')
     m = get_int('Minutos: ')
     s = get_int('Segundos: ')
     return a_segundos(h, m, s)
 
-print('3.1) a) Ejercicio: ', calcSegundos())
+print('3.1) a) Ejercicio: ', calc_segundos())

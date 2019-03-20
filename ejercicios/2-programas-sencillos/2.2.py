@@ -4,8 +4,8 @@
 from helpers import get_int
 from helpers import roundDecimal
 
-def fahrenheitToCelsius():
+def fahrenheit_to_celsius():
     temperature = get_int('Temperature: ')
     return roundDecimal(((temperature - 32) * 5) / 9) + 'C'
 
-print('2.2) Ejercicio:', fahrenheitToCelsius())
+print('2.2) Ejercicio:', fahrenheit_to_celsius())
