@@ -3,10 +3,10 @@
 # 1000 veces, en una única línea, con espacios intermedios.
 # Ayuda: Investigar acerca del parámetro end de la función print.
 
-def magicTrick():
+def magic_trick():
     palabra = input('Por favor, escriba una palabra: ')
-    
     for _ in range(100):
         print(palabra, end=' ')
+    print()
 
-magicTrick()
+magic_trick()

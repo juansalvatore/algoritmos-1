@@ -5,7 +5,7 @@ from helpers import ejercicio
 def factorial(n):
     result = 1
     for i in range(1, n + 1):
-        result = i * result
+        result *= i 
     return result
 
 ejercicio('1.4) Factorial:', factorial(8))

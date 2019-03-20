@@ -16,7 +16,7 @@ def numeros_triangulares():
     count = 1
     for i in range(1, n + 1):
         print(i, '-', count)
-        count = count + (i + 1)
+        count += i + 1
         
 numeros_triangulares()
 

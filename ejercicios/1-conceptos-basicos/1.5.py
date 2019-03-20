@@ -13,10 +13,10 @@ def dividir(n1, n2):
 def multiplicar(n1, n2):
     return n1 * n2
 
-print('\nEjercicio: 1.5) a)', 'Sumar: ' + str(sumar(2, 2)))
-print('\nEjercicio: 1.5) a)', 'Restar: ' + str(restar(2, 2)))
-print('\nEjercicio: 1.5) a)', 'Dividir: ' + str(dividir(2, 2)))
-print('\nEjercicio: 1.5) a)', 'Multiplicar: ' + str(multiplicar(2, 2)))
+print('\nEjercicio: 1.5) a)', 'Sumar:', sumar(2, 2))
+print('\nEjercicio: 1.5) a)', 'Restar:', restar(2, 2))
+print('\nEjercicio: 1.5) a)', 'Dividir:', dividir(2, 2))
+print('\nEjercicio: 1.5) a)', 'Multiplicar:', multiplicar(2, 2))
 
 
 # b) Dado un número entero 𝑛, imprimir su tabla de multiplicar.
