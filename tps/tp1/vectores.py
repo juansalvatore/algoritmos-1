@@ -12,3 +12,4 @@ def norma(x, y, z):
 def producto_vectorial(x1, y1, z1, x2, y2, z2):
     """Recibe las coordenadas de dos vectores en R3 y devuelve el producto vectorial"""
     return y1*z2 - z1*y2, z1*x2 - x1*z2, x1*y2 - y1*x2
+    
