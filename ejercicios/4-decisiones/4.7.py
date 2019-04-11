@@ -8,9 +8,8 @@
     # C-100
     # D-500
     # M-1000
-def int_to_roman(input):
-    """ Convert an integer to a Roman numeral. """
 
+def num_a_romano(input):
     ints = (1000, 900,  500, 400, 100,  90, 50,  40, 10,  9,   5,  4,   1)
     nums = ('M',  'CM', 'D', 'CD','C', 'XC','L','XL','X','IX','V','IV','I')
     result = []
@@ -20,4 +19,4 @@ def int_to_roman(input):
         input -= ints[i] * count
     return ''.join(result)
 
-print(int_to_roman(8))
+print(num_a_romano(8))

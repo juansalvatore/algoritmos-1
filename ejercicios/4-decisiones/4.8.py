@@ -15,8 +15,8 @@
 
 def signo_sodiaco(dia, mes):
     signos = ["Capricornio", "Acuario", "Piscis", "Aries", "Tauro", "Geminis", "Cancer", "Leo", "Virgo", "Libra", "Escorpio", "Sagitario"]
-    fechas = (21, 19, 20, 20, 20, 21, 23, 23, 23, 22, 22, 21)
-    if dia < fechas[mes - 1]:
+    fechas = (20, 19, 20, 20, 20, 21, 23, 23, 23, 22, 22, 21)
+    if dia <= fechas[mes - 1]:
         return signos[mes - 1]
     return signos[mes % 12]
 
