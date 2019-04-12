@@ -6,3 +6,11 @@
 # de la posición p.
 # c) Modificar las funciones anteriores para que tengan en cuenta el género del destinatario,
 # para ello, deberán recibir una tupla de tuplas, conteniendo el nombre y el género.
+
+
+def saludar_tupla(t):
+    for nombre in t:
+        print('Estimado {}, vote por mi'.format(nombre))
+
+
+saludar_tupla(('Juan', 'Pedro'))
