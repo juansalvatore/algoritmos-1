@@ -100,7 +100,6 @@ def numero_minas_alrededor(posicion, tablero, mina):
                 continue
             if str(tablero[x1][y1]).strip() == mina:
                 count += 1
-            # print(tablero[x1][y1], end='')
     return count
 
 
@@ -115,3 +114,33 @@ def popular_tablero_con_numeros(tablero, mina):
                                              numero_minas_alrededor(posicion, nuevo_tablero, mina))
 
     return nuevo_tablero
+
+
+def validar_win(tablero, mina, cantidad_minas, placeholder):
+    count = 0
+    for row in tablero:
+        for col in row:
+            if col.strip() == placeholder:
+                count += 1
+            if col.strip() == mina:
+                return False
+    if count == cantidad_minas:
+        return True
+    return False
+
+
+def pedir_posicion(mensaje1, mensaje2, ancho, alto):
+    counter = 0
+    while True:
+        if counter == 0:
+            posicion = input('\n{}'.format(mensaje1))
+        else:
+            posicion = input('{}'.format(mensaje2))
+        if len(posicion) < 2 or (posicion[0] not in ascii_lowercase) or (not posicion[1].isdigit()) or letra_a_index(posicion[0]) > alto or int(posicion[1:]) > ancho:
+            counter += 1
+            continue
+        return posicion
+
+def refrescar_tablero(tablero):
+    print("\n" * 100)
+    mostrar_tablero(tablero)
