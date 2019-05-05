@@ -12,7 +12,7 @@ def crear_tablero(ancho, alto, placeholder='.'):
 
 def mostrar_tablero(tablero):
     """
-        recibe una matriz de n * n e imprime la matriz en forma de tablero rectangular n * n con numeros
+        recibe una matriz de n * m e imprime la matriz en forma de tablero rectangular n * m con numeros
         como referencia del eje horizontal y letras ascii_uppercase para el eje vertical.
     """
     print()
@@ -26,7 +26,8 @@ def mostrar_tablero(tablero):
             if i == 0:
                 print('  {}'.format(j), end='')
             elif i == 1:
-                print('  -', end='')
+                number_len = len(str(j))
+                print(' ' * (number_len-1) + '  -', end='')
             else:
                 number_len = len(str(j))
                 if number_len == 2:
@@ -74,7 +75,7 @@ def get_elemento(posicion, tablero):
 
 def popular_tablero_con_minas(tablero, cantidad, mina='*'):
     """
-        recibe una matriz de n * n y un numero correspondiente a la cantida de minas para agregar
+        recibe una matriz de n * m y un numero correspondiente a la cantida de minas para agregar
         al tablero. Como parametro opcional se puede pasar un tipo de mina distinta
     """
     alto, ancho = len(tablero), len(tablero[1])
@@ -89,6 +90,11 @@ def popular_tablero_con_minas(tablero, cantidad, mina='*'):
 
 
 def numero_minas_alrededor(posicion, tablero, mina):
+    """
+        recibe una cadena de caracteres representando una posición, ej: "a1". También recibe una matriz de n * m y 
+        un string correspondiente a la representación de las minas en el tablero. Devuelve un integer correspondiente a 
+        cuantas minas se encuentran en un radio de un casillero desde el centro "posicion".
+    """
     x, y = parsear_posicion(posicion)
     alto_tablero, ancho_tablero = len(tablero) - 1, len(tablero[0]) - 1
     ancho_rectangulo = 3
@@ -104,6 +110,10 @@ def numero_minas_alrededor(posicion, tablero, mina):
 
 
 def popular_tablero_con_numeros(tablero, mina):
+    """
+        recibe una matriz de n * m y un string correspondiente a una mina. Retorna un nuevo tablero reemplazando cada
+        espacio vacío por el numero correspondiente a la cantidad de minas que tiene alrededor.
+    """
     nuevo_tablero = tablero
     for row in range(len(tablero)):
         for col in range(len(tablero[0])):
@@ -117,6 +127,10 @@ def popular_tablero_con_numeros(tablero, mina):
 
 
 def validar_win(tablero, mina, cantidad_minas, placeholder):
+    """
+        recibe una matriz de n * m, un string correspondiente a una mina, un integer que representa la cantidad de minas que posee la matriz 
+        y un string que representa un espacio vacío. Retorna un valor booleano dependiendo de si el jugador ganó o no.  
+    """
     count = 0
     for row in tablero:
         for col in row:
@@ -130,6 +144,11 @@ def validar_win(tablero, mina, cantidad_minas, placeholder):
 
 
 def pedir_posicion(mensaje1, mensaje2, ancho, alto):
+    """
+        recibe dos strings correspondiente a mensajes para pedir posicion, el ancho y el alto del tablero (matriz). 
+        Retorna la posicion cuando tenga el formato, ej: "a3" sin importar mayusculas, y cuando la posicion se encuentre
+        en las dimensiones del tablero. 
+    """
     counter = 0
     while True:
         if counter == 0:
@@ -141,6 +160,10 @@ def pedir_posicion(mensaje1, mensaje2, ancho, alto):
             continue
         return posicion
 
+
 def refrescar_tablero(tablero):
+    """
+        recibe el tablero a imprimir. Imprime cien saltos de linea para limpiar el tablero anterior y luego imprime el nuevo tablero.
+    """
     print("\n" * 100)
     mostrar_tablero(tablero)
