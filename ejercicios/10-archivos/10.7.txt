@@ -1,0 +1,4 @@
+clave,valor
+hola,1
+test,4
+bye,10
