@@ -15,7 +15,7 @@ class Tweets():
         usuarios = self._validar_usuarios(usuarios)
         cadena_markov = self._generar_cadena_markov(usuarios)
         # pprint.pprint(cadena_markov)
-        next_word = 'Aquí'
+        next_word = random.choice(list(cadena_markov.keys()))
         tweet_generado = ''
         while True:
             tweet_generado += next_word.rstrip('\n')
@@ -23,8 +23,11 @@ class Tweets():
                 break
             tweet_generado += ' '
             opciones_palabras = cadena_markov[next_word]
-            opciones = list(opciones_palabras.keys())
-            next_word = random.choice(opciones)
+            nuevas_opciones = []
+            for opcion in opciones_palabras.keys():
+                for palabra in range(opciones_palabras[opcion]):
+                    nuevas_opciones.append(opcion)
+            next_word = random.choice(nuevas_opciones)
         print(tweet_generado)
 
     def _generar_cadena_markov(self, usuarios):                
@@ -101,8 +104,8 @@ class Tweets():
     # $ python3 algotweets.py favoritos <cantidad>
 
 def main():
-    tweets = Tweets('test.csv')
+    tweets = Tweets('tweets.csv')
     # tweets.trending(10)
-    tweets.generar()
+    tweets.generar(['ingenieriauba'])
 
 main()
