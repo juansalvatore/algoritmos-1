@@ -1,6 +1,7 @@
 import sys
 import csv
 import pprint
+import random
 
 class Tweets():
     def __init__(self, arch_tweets):
@@ -13,18 +14,26 @@ class Tweets():
     def generar(self, usuarios=[]):
         usuarios = self._validar_usuarios(usuarios)
         cadena_markov = self._generar_cadena_markov(usuarios)
-        pprint.pprint(cadena_markov)
-
+        # pprint.pprint(cadena_markov)
+        next_word = 'Aquí'
+        tweet_generado = ''
+        while True:
+            tweet_generado += next_word.rstrip('\n')
+            if next_word == '\n':
+                break
+            tweet_generado += ' '
+            opciones_palabras = cadena_markov[next_word]
+            opciones = list(opciones_palabras.keys())
+            next_word = random.choice(opciones)
+        print(tweet_generado)
 
     def _generar_cadena_markov(self, usuarios):                
         dic = {}
         for usuario in usuarios:
             for tweets in self.tweets[usuario]:
                 for tweet in tweets.split('\n'):
-                    print('COMIENZO TWEET')
                     palabras = tweet.split(' ')
                     for i, palabra_a in enumerate(palabras):
-                        print(palabra_a)
                         if palabra_a == '':
                             continue
                         try:
@@ -38,12 +47,8 @@ class Tweets():
                                 dic[palabra_a][palabras[i + 1]] += 1
                             else:
                                 dic[palabra_a] = {**dic[palabra_a], palabras[i + 1]: 1}
-                            print(dic[palabra_a])
                         else:
                             dic[palabra_a] = {palabras[i + 1]: 1}
-                        
-                    print('FIN TWEET\n')
-                    
         return dic
 
     def _validar_usuarios(self, usuarios):
@@ -67,6 +72,8 @@ class Tweets():
     # TRENDING
     # $ python3 algotweets.py trending <cantidad>
     def trending(self, n):
+        if not self.sorted_trending_hashtags:
+            print('No hay hashtags')
         for i, hashtag in enumerate(self.sorted_trending_hashtags):
             if i >= n:
                 return
