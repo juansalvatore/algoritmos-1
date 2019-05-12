@@ -19,19 +19,30 @@ class Tweets():
     def _generar_cadena_markov(self, usuarios):                
         dic = {}
         for usuario in usuarios:
-            for tweet in self.tweets[usuario]:
-                palabras = tweet.split(' ')
-                for i, palabra_a in enumerate(palabras):
-                    if palabra_a == '':
-                        continue
-                    try:
-                        if not palabras[i + 1]:
+            for tweets in self.tweets[usuario]:
+                for tweet in tweets.split('\n'):
+                    print('COMIENZO TWEET')
+                    palabras = tweet.split(' ')
+                    for i, palabra_a in enumerate(palabras):
+                        print(palabra_a)
+                        if palabra_a == '':
                             continue
-                    except:
-                        dic[palabra_a] = [{'palabra': '\n', 'apariciones': 1}]
-                        continue
-                    
-                    dic[palabra_a] = {palabras[i + 1]: 0}
+                        try:
+                            if not palabras[i + 1]:
+                                continue
+                        except:
+                            dic[palabra_a] = {'\n': 1}
+                            continue
+                        if dic.get(palabra_a, ''):
+                            if dic[palabra_a].get(palabras[i + 1], ''):
+                                dic[palabra_a][palabras[i + 1]] += 1
+                            else:
+                                dic[palabra_a] = {**dic[palabra_a], palabras[i + 1]: 1}
+                            print(dic[palabra_a])
+                        else:
+                            dic[palabra_a] = {palabras[i + 1]: 1}
+                        
+                    print('FIN TWEET\n')
                     
         return dic
 
