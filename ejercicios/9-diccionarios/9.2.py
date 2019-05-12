@@ -10,3 +10,41 @@
 # realizar y devuelva la cantidad de veces que se observa cada valor de la suma de los dos
 # dados.
 # Nota: utilizar el módulo random para obtener tiradas aleatorias.
+
+def cantidad_de_palabras(str):
+    dic = {}
+    palabras =  str.lower().split(' ')
+    for palabra in palabras:
+        if dic.get(palabra, ''):
+            dic[palabra] = dic[palabra] + 1
+        else:
+            dic[palabra] = 1
+    return dic
+
+# print(cantidad_de_palabras("Que lindo día que hace hoy hoy hoy"))
+
+def cantidad_caracter(str):
+    dic = {}
+    letras = ''.join(str.lower().split(' '))
+    for letra in letras:
+        if dic.get(letra, ''):
+            dic[letra] = dic[letra] + 1
+        else:
+            dic[letra] = 1
+    return dic
+
+# print(cantidad_caracter("ho hoy hoy"))
+
+import random
+
+def tirar_dados(iteraciones):
+    dic = {}
+    for i in range(iteraciones):
+        suma = random.randint(1, 6) + random.randint(1, 6)
+        if dic.get(suma, ''):
+            dic[suma] = dic[suma] + 1
+        else:
+            dic[suma] = 1
+    return dic
+
+print(tirar_dados(6))

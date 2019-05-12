@@ -1,0 +1,3 @@
+titulo,rate,anio
+harry potter,10,2004
+lord of the rings,8,2000
