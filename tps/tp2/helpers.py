@@ -1,11 +1,11 @@
-import random
 import csv
+import random
 
 class CadenaMarkov:
     def __init__(self, dic = {}, usuarios = []):
         self.cadena = self._generar_cadena_markov(usuarios, dic)
 
-    def get_hashtags_cadena(self):
+    def get_cadena(self):
         return self.cadena
 
     def recorrer(self, next_word = ''):
@@ -61,6 +61,7 @@ class CadenaMarkov:
                     else:
                         new_dic[palabra_a] = {palabras[i + 1]: 1}
         return new_dic
+
 
 class Hashtags:
     def __init__(self, arch_tweets):
