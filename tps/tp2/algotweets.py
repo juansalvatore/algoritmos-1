@@ -16,13 +16,13 @@ class Tweets():
         print(f'{tweet_generado}\n"""\n')
         self._guardar_a_favoritos(tweet_generado)
     
-    def trending(self, n=0):
+    def trending(self, n = 0):
         Hashtags(self.arch_tweets).get_trending(n)
 
-    def favoritos(self, n):
+    def favoritos(self, n = 0):
         with open('favoritos.csv') as favoritos:
             for i, tweet in enumerate(favoritos):
-                if i == n: return
+                if n and i == n: return
                 tweet = tweet.split('\t')[1].rstrip('\n')
                 print(f'{i + 1} - {tweet}')
 
@@ -80,10 +80,24 @@ class Tweets():
     
 
 def main():
-    print(sys.argv)
     tweets = Tweets('tweets.csv')
-    tweets.trending(4)
-    # tweets.generar()
-    # tweets.favoritos(5)
+    if len(sys.argv) == 1:
+        return print('Debes pasar un segundo argumento [generar/trending/favoritos]')
+    if sys.argv[1] == 'trending':
+        try:
+            tweets.trending(int(sys.argv[2]))
+        except:
+            tweets.trending()
+    elif sys.argv[1] == 'generar':
+        try:
+            tweets.generar(sys.argv[2:])
+            return
+        except:
+            return
+    elif sys.argv[1] == 'favoritos':
+        try:
+            tweets.favoritos(int(sys.argv[2]))
+        except Exception as err:
+            tweets.favoritos()
 
 main()
