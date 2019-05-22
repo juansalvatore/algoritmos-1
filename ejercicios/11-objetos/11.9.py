@@ -32,3 +32,66 @@ class LE():
             nuevo.prox = act.prox
             act.prox = nuevo
         self.len += 1
+
+    def pop(self, i=None):
+        if i is None:
+            i = self.len - 1
+        if i < 0 or i > self.len:
+            raise Exception('Posicion invalida')
+        else:
+            index = 0
+            ant = None
+            act = self.prim
+            while act and index < i:
+                ant = act
+                act = act.prox
+                index += 1
+            if ant is None:
+                dato = self.prim.dato
+                self.prim = act.prox
+            else:
+                dato = act.dato
+                ant.prox = act.prox
+        self.len -= 1
+        return dato
+
+    def remove(self, dato):
+        if dato is None:
+            raise Exception('Dato necesario')
+        if self.prim == dato:
+            self.prim = self.prim.prox
+        else:
+            ant = None
+            act = self.prim
+            while act and act.dato != dato:
+                ant = act
+                act = act.prox
+            if act is not None and act.dato == dato:
+                self.prim = self.prim.prox
+            else:
+                if act.dato != dato:
+                    raise Exception('Dato not found')
+                ant.prox = act.prox
+        self.len -= 1
+
+    def __repr__(self):
+        res = []
+        act = self.prim
+        while act:
+            res.append(str(act.dato))
+            act = act.prox
+        return ' - '.join(res)
+
+    def duplicar(self, dato):
+        act = self.prim
+        while act:
+            if act.dato == dato:
+                nuevo = _Nodo(act.dato)
+                nuevo.prox = act.prox
+                act.prox = nuevo
+                if act.prox:
+                    act = act.prox.prox
+                else:
+                    return
+            else:
+                act = act.prox
