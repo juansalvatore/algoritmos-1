@@ -2,10 +2,18 @@ import csv
 import random
 
 class CadenaMarkov:
+    '''
+        La clase CadenaMarkov recibe un diccionario y un arreglo de usuarios (str).
+        Crea una cadena de markov en base al diccionario recibido y los usuarios a considerar 
+        y retorna los metodos publicos get_cadena y recorrer.
+    '''
     def __init__(self, dic = {}, usuarios = []):
         self.cadena = self._generar_cadena_markov(usuarios, dic)
 
     def get_cadena(self):
+        """
+            Recibe una referencia al constructor y retorna una cadena de markov (dic).
+        """
         return self.cadena
 
     def recorrer(self, next_word = ''):
@@ -36,7 +44,7 @@ class CadenaMarkov:
     def _generar_cadena_markov(self, usuarios, dic):
         """
             Recibe un diccionario con arreglos de cadenas de caracteres como valores y un arreglo de nombres de usuarios
-            devuelve una cadena de markov realizada en base a este diccionario.
+            y retorna una cadena de markov (dic) realizada en base a este diccionario.
         """
         if not usuarios:
             usuarios = self.cadena_markov.keys()
@@ -64,10 +72,47 @@ class CadenaMarkov:
 
 
 class Hashtags:
+    '''
+        Recibe un nombre de archivo (str) y retorna los metodos publicos get_trending
+        y get_hashtags.
+    '''
     def __init__(self, arch_tweets):
         self.trending = self._create_sorted_trending_hashtags(arch_tweets)
 
+    def get_trending(self, n):
+        """
+            Recibe un integer n, imprime los nombres de los hashtags hasta el indice n y 
+            retorna el array de objetos 'self.trending'
+        """
+        self._validar_cantidad_trending(n)
+        for i, hashtag in enumerate(self.trending):
+            if i >= n:
+                return
+            print(hashtag['name'])
+        return self.trending 
+
+    def get_hashtags(self, tweet):
+        """
+            Recibe un string y retorna un arreglo con los hashtags encontrados en el mismo.
+        """
+        return [word for word in tweet.split(' ') if word[0] == '#']
+
+    def _validar_cantidad_trending(self, n):
+        """
+            Recibe un integer n y valida que exista, que sea >= a 0 y que self.trending posea al menos un hashtag.
+        """
+        if not n:
+            return print('Debes definir la cantidad de temas que se desean mostrar.')
+        if n < 0:
+            return print('Debes definir la cantidad de temas que se desean mostrar con un numero positivo.')
+        if not self.trending:
+            return print('No hay hashtags')
+
     def _create_sorted_trending_hashtags(self, arch_tweets):
+        """
+            Recibe el nombre de un archivo y retorna un arreglo de objetos con claves 'name' y 'repetitions',
+            ordenados por la clave 'repetitions' de mayor a menor.
+        """
         trending_dic = {}
         with open(arch_tweets, encoding="utf8") as tweets:
             reader = csv.reader(tweets, delimiter='\t')
@@ -79,22 +124,3 @@ class Hashtags:
         sortable = [{'name': key, 'repetitions': trending_dic[key]} for key in trending_dic.keys()]
         sortable.sort(key=lambda x: x['repetitions'], reverse=True)
         return sortable
-
-    def get_trending(self, n):
-        self._validar_cantidad_trending(n)
-        for i, hashtag in enumerate(self.trending):
-            if i >= n:
-                return
-            print(hashtag['name'])
-        return self.trending 
-
-    def get_hashtags(self, tweet):
-        return [word for word in tweet.split(' ') if word[0] == '#']
-
-    def _validar_cantidad_trending(self, n):
-        if not n:
-            return print('Debes definir la cantidad de temas que se desean mostrar.')
-        if n < 0:
-            return print('Debes definir la cantidad de temas que se desean mostrar con un numero positivo.')
-        if not self.trending:
-            return print('No hay hashtags')
