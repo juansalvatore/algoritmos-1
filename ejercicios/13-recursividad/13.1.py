@@ -3,4 +3,8 @@
 
 
 def digitos(n):
-    return len(list(n))
+    if n/10 < 1: 
+        return 1
+    return 1 + digitos(n/10)
+
+print(digitos(1654))
