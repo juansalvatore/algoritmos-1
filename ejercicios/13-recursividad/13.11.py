@@ -12,3 +12,12 @@
 # 𝑛 = 6  1 6 15 20 15 6 1
 # Escribir la función recursiva pascal(n, k) que calcula el valor que se encuentra en la fila n
 # y la columna k. Ejemplo: pascal(5, 2) -> 10
+
+
+def pascal(n, k):
+    arr = []
+    if n == k:
+        arr += [1]
+
+
+print(pascal(5, 2))
