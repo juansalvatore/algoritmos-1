@@ -3,6 +3,7 @@ import pprint
 from datetime import datetime
 from helpers import CadenaMarkov, Hashtags
 
+
 class Tweets():
     '''
         La clase Tweet recibe una cadena de caracteres con el nombre del archivo
@@ -72,19 +73,21 @@ class Tweets():
         while True:
             input_usr = input('¿Desea agregar este tweet a favoritos? [s/n] ')
             if input_usr == 's':
-                try: 
+                try:
                     tweets_favoritos = []
                     with open('favoritos.csv', 'r') as favoritos:
                         for line in favoritos:
                             line = line.rstrip('\n')
                             tweets_favoritos.append(line)
                     with open('favoritos.csv', 'w') as favoritos:
-                        favoritos.write(f'{datetime.now()}\t{tweet_generado}\n')  
+                        favoritos.write(
+                            f'{datetime.now()}\t{tweet_generado}\n')
                         for tweet in tweets_favoritos:
-                            favoritos.write(f'{tweet}\n')  
+                            favoritos.write(f'{tweet}\n')
                 except Exception as err:
                     with open('favoritos.csv', 'w') as favoritos:
-                        favoritos.write(f'{datetime.now()}\t{tweet_generado}\n')                    
+                        favoritos.write(
+                            f'{datetime.now()}\t{tweet_generado}\n')
                 break
             if input_usr == 'n':
                 break
@@ -98,7 +101,7 @@ class Tweets():
             usuarios = self.tweets.keys()
         else:
             # validar que el usuario existe
-            for usuario in usuarios: 
+            for usuario in usuarios:
                 if usuario not in self.tweets.keys():
                     return print(f'No se tiene información sobre el usuario: {usuario}')
         return usuarios
@@ -114,4 +117,3 @@ class Tweets():
             for tweet in reader:
                 dic[tweet[0]] = [*dic.get(tweet[0], [tweet[1]]), tweet[1]]
         return dic
-    
